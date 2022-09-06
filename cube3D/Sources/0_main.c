@@ -30,7 +30,17 @@ static void	check_file(char *argv)
 	size_map();
 }
 
-
+static void ft_set_pos(t_vars *vars)
+{
+	if (vars->pos == 'N')
+		vars->playerAngle = 269;
+	else if (vars->pos == 'S')
+		vars->playerAngle = 89;
+	else if (vars->pos == 'E')
+		vars->playerAngle = 1;
+	else
+		vars->playerAngle = 179;
+}
 
 int	main(int argc, char **argv)
 {
@@ -39,6 +49,7 @@ int	main(int argc, char **argv)
 	
 		ft_t_vars()->mlx = mlx_init();
 		check_file(argv[1]);
+		ft_set_pos(ft_t_vars());
 		ft_t_vars()->win = mlx_new_window(ft_t_vars()->mlx, WW, WH, "cube3D");
 		ft_t_vars()->img = mlx_new_image(ft_t_vars()->mlx, WW, WH);
 		ft_t_vars()->addr = mlx_get_data_addr(ft_t_vars()->img, &ft_t_vars()->bits_per_pixel, &ft_t_vars()->line_length,
