@@ -37,13 +37,16 @@ void	ft_print_walls(t_rays *self)
 	int	i;
 
 	i = 0;
+	if (self->wallH > WH)
+		self->wallH = WH;
 	self->tmp = self->wallH;
 	while (self->wallH--)
 	{
-		self->difx = (self->rayX - (int)(self->rayX + 0.1));
-		self->dify = (self->rayY - (int)(self->rayY + 0.1));
+		self->difx = (self->rayX - (int)(self->rayX + 0.3));
+		self->dify = (self->rayY - (int)(self->rayY + 0.3));
 		if (self->rayCount == WW / 2)
 		{
+			//printf("pAngle = %d, rAngle = %f, difx = %f, dify = %f, rayx = %f, posx = %f, rayy = %f, posy = %f\n", self->vars->playerAngle, self->rayAngle, self->difx, self->dify, self->rayX, self->vars->pos_x, self->rayY, self->vars->pos_y);
 			while (i < WH - 1)
 			{
 				my_mlx_pixel_put(self->vars, self->rayCount, i, \
@@ -51,21 +54,21 @@ void	ft_print_walls(t_rays *self)
 				i++;
 			}
 		}
-		if (fabs(self->difx) > fabs(self->dify) \
-				&& self->rayY > self->vars->pos_y)
+		if (fabs(self->difx) < fabs(self->dify) && \
+			self->rayX > self->vars->pos_x)
 			my_mlx_pixel_put(self->vars, self->rayCount, \
 				((WH / 2) - (self->tmp / 2)) + self->wallH, \
-				(3 << 16 | 186 << 8 | 252));
-		else if (fabs(self->difx) > fabs(self->dify))
+				(3 << 16 | 186 << 8 | 252));		//E
+		else if (fabs(self->difx) > fabs(self->dify) \
+				&& self->rayY > self->vars->pos_y)		//S
 			my_mlx_pixel_put(self->vars, self->rayCount, \
 					((WH / 2) - (self->tmp / 2)) + self->wallH,
 				(3 << 16 | 186 << 8 | 252) / 2);
-		else if (fabs(self->difx) < fabs(self->dify) && \
-			self->rayX > self->vars->pos_x)
-			ry_mlx_pixel_put(self->vars, self->rayCount, \
+		else if (fabs(self->difx) > fabs(self->dify)) //N
+			my_mlx_pixel_put(self->vars, self->rayCount, \
 					((WH / 2) - (self->tmp / 2)) + self->wallH, \
 				(3 << 16 | 186 << 8 | 252) / 4);
-		else
+		else 											//W
 			my_mlx_pixel_put(self->vars, self->rayCount, \
 					((WH / 2) - (self->tmp / 2)) + self->wallH, \
 					(3 << 16 | 186 << 8 | 252) / 6);

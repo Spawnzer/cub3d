@@ -23,9 +23,10 @@ t_vars	*ft_t_vars(void)
 		vars.map_y = 0;
 		vars.pos = 0;
 		vars.init = 1;
-		vars.playerAngle = 89;
-		vars.speed = 3.0;
-		vars.rotation = 5;
+		vars.playerAngle = 1;
+		vars.speed = 1.0;
+		vars.rotation = 3;
+	//	vars.keys[5] = {ft_left, ft_down, ft_right, ft_up, ft_esc};
 	}
 	return (&vars);
 }

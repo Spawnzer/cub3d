@@ -49,7 +49,7 @@ typedef struct s_rays
 	int tmp;
 } t_rays;
 
-void ft_rayCasting(t_vars *vars);
+void ft_raycasting(t_vars *vars);
 void ft_reset_values(t_rays *self);
 void ft_hit_wall(t_rays *self);
 void ft_calculate_distance(t_rays *self);

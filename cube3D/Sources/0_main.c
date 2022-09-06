@@ -12,7 +12,7 @@
 
 #include "../Includes/cube3d.h"
 
-static int	close_game(t_vars *vars)
+int	close_game(t_vars *vars)
 {
 	free_cube3d(vars);
 	exit(EXIT_SUCCESS);
@@ -30,59 +30,7 @@ static void	check_file(char *argv)
 	size_map();
 }
 
-static int	read_key(int keycode, t_vars *vars) {
 
-	double newX = 0;
-	double newY = 0;
-	if (keycode == ESC)
-		close_game(vars);
-	if (keycode == UP)// && vars->map[(int)floor(vars->pos_x)][(int)floor(vars->pos_y - 1)] != '1')
-	{
-		vars->playerCos = (cos(degreeToRadian(vars->playerAngle)));
-		//vars->playerCos *= 2;
-		vars->playerSin = (sin(degreeToRadian(vars->playerAngle)));
-	//	vars->playerSin *= 2;
-		//printf("pAngle = %d, pCos = %f, pSin = %f\n",vars->playerAngle, vars->playerCos, vars->playerSin);
-		newX = vars->pos_x + vars->playerCos;
-		newY = vars->pos_y + vars->playerSin;
-		if (vars->map[(int)ceil((newX))][(int)ceil((newY))] != '1') {
-			printf("cos = %f, sin = %f\n", vars->playerCos, vars->playerSin);
-			//printf("map = %c at %d X & %d Y\n", vars->map[(int)floor(newX)][(int)floor(newY)], (int)floor(newX), (int)floor(newY));
-			vars->pos_x = newX;
-			vars->pos_y = newY;
-		}
-
-	} else if (keycode == DOWN)// && vars->map[(int)floor(vars->pos_x)][(int)floor(vars->pos_y + 1)] != '1')
-	{
-	//	vars->playerCos = cos(degreeToRadian(vars->playerAngle)) * vars->speed;
-	//	vars->playerSin = sin(degreeToRadian(vars->playerAngle)) * vars->speed;
-		vars->playerCos = (cos(degreeToRadian(vars->playerAngle)));
-		//vars->playerCos *= 2;
-		vars->playerSin = (sin(degreeToRadian(vars->playerAngle)));
-		//avars->playerSin *= 2;
-		//printf("pAngle = %d, pCos = %f, pSin = %f\n",vagit branrs->playerAngle, vars->playerCos, vars->playerSin);
-		newX = vars->pos_x - vars->playerCos;
-		newY = vars->pos_y - vars->playerSin;
-		if (vars->map[(int)ceil(newX)][(int)ceil(newY)] != '1') {
-			vars->pos_x = newX;
-			vars->pos_y = newY;
-		}
-
-	} else if (keycode == LEFT)// && vars->map[(int)floor(vars->pos_x - 1)][(int)floor(vars->pos_y)] != '1')
-	{
-		if (vars->playerAngle - vars->rotation < 0)
-			vars->playerAngle = 360 + vars->playerAngle - vars->rotation;
-		else
-			vars->playerAngle -= vars->rotation;
-	}
-	else if (keycode == RIGHT)// && vars->map[(int)floor(vars->pos_x + 1)][(int)floor(vars->pos_y)] != '1')
-	{
-		vars->playerAngle += vars->rotation;
-		vars->playerAngle %= 360;
-	}
-	put_game();
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {
