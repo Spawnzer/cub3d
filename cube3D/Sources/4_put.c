@@ -88,6 +88,7 @@ void	ft_raycasting(t_vars *vars)
 	self = get_raycaster();
 	self->vars = vars;
 	self->rayAngle = self->vars->playerAngle - self->halfFOV;
+	printf("%f X, %f Y\n", vars->pos_x, vars->pos_y);
 	while (self->rayCount < WW)
 	{
 		self->operations->reset_values(self);
