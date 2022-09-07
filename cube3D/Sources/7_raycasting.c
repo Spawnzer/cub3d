@@ -42,8 +42,8 @@ void	ft_print_walls(t_rays *self)
 	self->tmp = self->wallH;
 	while (self->wallH--)
 	{
-		self->difx = (self->rayX - (int)(self->rayX + 0.3));
-		self->dify = (self->rayY - (int)(self->rayY + 0.3));
+		self->difx = (self->rayX - (int)(self->rayX + 0.1));
+		self->dify = (self->rayY - (int)(self->rayY + 0.1));
 		if (self->rayCount == WW / 2)
 		{
 			//printf("pAngle = %d, rAngle = %f, difx = %f, dify = %f, rayx = %f, posx = %f, rayy = %f, posy = %f\n", self->vars->playerAngle, self->rayAngle, self->difx, self->dify, self->rayX, self->vars->pos_x, self->rayY, self->vars->pos_y);
