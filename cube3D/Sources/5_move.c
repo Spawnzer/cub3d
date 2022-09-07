@@ -14,11 +14,14 @@
 
 int	read_key(int keycode, t_vars *vars)
 {
-	void	(*keys[5])(t_vars *) = {&ft_left, &ft_down, &ft_right, &ft_up, &ft_esc};
+	void	(*keys[5])(t_vars *)= {&ft_left, &ft_down, &ft_right, &ft_up, &ft_esc};
+	int realKey;
 
+	realKey = get_keycode(keycode);
+	if (realKey >= 0 && realKey <= 4)
+		keys[realKey](vars);
 	vars->playerCos = (cos(degreeToRadian(vars->playerAngle)));
 	vars->playerSin = (sin(degreeToRadian(vars->playerAngle)));
-	keys[get_keycode(keycode)](vars);
 	put_game();
 	return (0);
 }
@@ -29,8 +32,10 @@ int	get_keycode(int keycode)
 		return (4);
 	else if (keycode == UP)
 		return (3);
-	else
+	else if (keycode <= 2 && keycode >= 0)
 		return (keycode);
+	else
+		return (6);
 }
 
 void	ft_up(t_vars *vars)
@@ -80,4 +85,23 @@ void	ft_right(t_vars *vars)
 void	ft_esc(t_vars *vars)
 {
 	close_game(vars);
+}
+
+int	ft_mouse(int button, int x, int y, t_vars *vars)
+{
+	/*if (button == ON_MOUSEMOVE) {
+		if (x < WW / 2)
+			ft_left(vars);
+		else
+			ft_right(vars);
+	}*/
+	if (button == ON_MOUSEUP)
+		ft_left(vars);
+	else if (button == ON_MOUSDOWN)
+		ft_right(vars);
+	read_key(-1, vars);
+	y = 0;
+	x = 0;
+	button = 0;
+	return (0);
 }

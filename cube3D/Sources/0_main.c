@@ -57,7 +57,9 @@ int	main(int argc, char **argv)
 		put_game();
 	 	mlx_hook(ft_t_vars()->win, ON_DESTROY, 0, close_game, (void *)ft_t_vars());
 		mlx_hook(ft_t_vars()->win, ON_KEYDOWN, 1L << 0, read_key, (void *)ft_t_vars());
-	 	mlx_loop(ft_t_vars()->mlx);
+		mlx_mouse_hook(ft_t_vars()->win, &ft_mouse, ft_t_vars());
+		//mlx_hook(ft_t_vars()->win,6, 0x40L, &ft_mouse, ft_t_vars());
+		mlx_loop(ft_t_vars()->mlx);
 	 }
 	// if (argc == 2 && ft_strncmp(argv[1], "-b", 2))
 	// {
